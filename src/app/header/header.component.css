@@ -1,0 +1,136 @@
+@media (min-width: 1024px) {
+  .location-warning-snack-bar {
+    width: 45%;
+    background-color: var(--warning-color);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%, -110%);
+    transition: transform 0.5s ease-in-out;
+    margin-top: 0.25em;
+    border-radius: 0.5em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
+
+  #landscape-orientation-title {
+    display: none;
+  }
+
+  .head-bar {
+    width: 100%;
+    background-color: var(--primary-color);
+  }
+
+  .title {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: var(--large-font);
+  }
+
+  .location-selector {
+    width: 100%;
+    background-color: inherit;
+    margin-top: 0.5vh;
+    padding-top: 0.5vh;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--medium-font);
+  }
+
+  .open-location-selector {
+    display: none;
+  }
+
+  .explanation {
+    margin-bottom: 1vh;
+  }
+
+  .location-select-container {
+    display: flex;
+    align-items: center;
+    width: 80%;
+  }
+
+  .location-icon {
+    margin-right: 1.5em;
+
+    & button {
+      width: 2em;
+      height: 2em;
+      padding: 1.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+    }
+  }
+
+  .select-inputs {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 2;
+
+    & select {
+      border: none;
+      width: 20%;
+      text-align: center;
+      height: 4vh;
+      font-size: var(--medium-font);
+
+      & option {
+        font-size: var(--small-font);
+      }
+    }
+
+    & .confirm-location {
+      height: 4vh;
+      width: 30%;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      border-radius: 2em;
+
+      & input {
+        padding-left: 0.25em;
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        background: transparent;
+        font-size: var(--medium-font);
+      }
+
+      & button {
+        background: transparent;
+        border: none;
+        margin-right: 0.1em;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        & i {
+          color: var(--secondary-color);
+
+          &:active {
+            color: var(--primary-color);
+          }
+        }
+      }
+    }
+  }
+
+  .screen-covering {
+    display: none;
+  }
+}

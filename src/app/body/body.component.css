@@ -1,0 +1,162 @@
+@media (min-width: 1024px) {
+  .all-body {
+    height: 75%;
+  }
+
+  .city-info {
+    height: 16%;
+  }
+
+  .upper-box {
+    width: 25%;
+  }
+
+  .side-a {
+    width: 100%;
+    height: 12.5vh;
+  }
+
+  .side-b {
+    width: 100%;
+
+    & #countdown {
+      display: none;
+    }
+  }
+
+  .mid-a {
+    width: 100%;
+    height: 21.5vh;
+
+    & img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .upper-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .middle-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pray-time {
+    width: 13%;
+  }
+
+  .bottom-body {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bottom-content {
+    width: 65%;
+  }
+
+  .bottom-friday-pray {
+    width: 30%;
+    padding: 0.75em;
+
+    & h3 {
+      margin-bottom: 0.5em;
+    }
+
+    & .confirm-friday-pray-time {
+      width: 80%;
+      height: 4vh;
+      border-radius: 2em;
+      background-color: white;
+      display: flex;
+      justify-content: space-between;
+
+      & input {
+        padding-left: 0.25em;
+        height: 100%;
+        width: 85%;
+        border: none;
+        border-right: 0.25px solid var(--secondary-color);
+        border-radius: 2em 0 0 2em;
+        background: transparent;
+      }
+
+      & button {
+        background: transparent;
+        margin-right: 0.15em;
+        border: none;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        & i {
+          color: var(--secondary-color);
+
+          &:active {
+            color: var(--primary-color);
+          }
+        }
+      }
+    }
+
+    & .displayed-friday-pray-time {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+
+      & .displayed-friday-pray-time-left {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: solid 0.5px var(--secondary-color);
+      }
+
+      & .displayed-friday-pray-time-right {
+        font-size: var(--xlarge-font);
+        width: 30%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        & button {
+          color: white;
+          width: 90%;
+          padding: 0.5em;
+          background: transparent;
+        }
+      }
+    }
+  }
+
+  .daily-content {
+    border-radius: 1em;
+    border: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.65);
+    width: 33%;
+    margin-top: 2.5em;
+  }
+
+  .daily-content-child {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+  }
+
+  .daily-content-p {
+    margin-top: 0.15em;
+  }
+}

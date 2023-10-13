@@ -1,0 +1,24 @@
+.app-container {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  background-color: white;
+  font-family: var(--latin-font);
+  background-image: url(src\assets\pics\Istanbul-Mosque-Stretched.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-width: 1920px) {
+  .app-container {
+    font-size: var(--xlarge-font);
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1919px){
+  .app-container {
+    font-size: var(--large-font);
+  }
+}

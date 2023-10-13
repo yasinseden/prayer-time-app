@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="all-body">
+        <ng-container *ngIf="dataToRender; else elseTemplate">
+            <!-- City-Date Info -->
+            <div class="city-info box" style="width: 100%;">
+                <h3>{{ dataToRender.locationInfo.city }} {{ dataToRender.infoFromApi?.gregorianDateLong }}</h3>
+            </div>
+            <!-- The Upper Body -->
+            <div class="upper-body">
+                <!-- Hijri and Gregorian dates -->
+                <div class="upper-body-side-content upper-box">
+                    <div class="box side-a">
+                        <p>Hicri: {{ dataToRender.infoFromApi?.hijriDateShort }}</p>
+                        <p>Miladi: {{ dataToRender.infoFromApi?.gregorianDateShort }}</p>
+                    </div>
+                    <div class="box side-b">
+                        <p>{{ dataToRender.infoFromApi?.hijriDateLong }}</p>
+                        <p>{{ dataToRender.infoFromApi?.gregorianDateLong }}</p>
+                    </div>
+                </div>
+                <!-- Mosque picture -->
+                <div class="upper-body-middle-content upper-box">
+                    <div class="box mid-a">
+                        <img id="mosque-day" [style.display]="mosqueDay" src="assets\pics\Mosque-With-Ligths-Off.png" alt="Mosque-Day">
+                        <img id="mosque-night" [style.display]="mosqueNight" src="assets\pics\Mosque-With-Ligths-On.png" alt="Mosque-Night">
+                    </div>
+                </div>
+                <!-- Countdown and current time -->
+                <div class="upper-body-side-content upper-box">
+                    <div class="box side-a">
+                        <!-- The countdown component's selector is here -->
+                        <p>Ezana Kalan Süre</p>
+                        <app-countdown></app-countdown>
+                        <!-- The countdown component's selector is here -->
+                    </div>
+                    <div class="box side-b">
+                        <span>Saat: <br> {{ currentDateTime | date:'HH:mm' }}</span>
+                    </div>
+                </div>
+            </div>
+            <!-- The Middle Body -->
+            <div class="middle-body">
+                <ng-container *ngFor="let field of fieldsToDisplay">
+                    <div id="{{ field }}" class="pray-time box"
+                        [ngClass]="{'prayer-time box-highlighted-token': field === prayerTimePeriodKey}">
+                        <p>{{ fieldNamesToDisplay[field] }}</p>
+                        <p>{{ prayerDataToForLoop[field] }}</p>
+                    </div>
+                </ng-container>
+            </div>
+            <!-- The Bottom Body -->
+            <div class="bottom-body">
+                <div class="bottom-content box">
+                    <p>{{ dailyContent.verse }}</p>
+                    <p>{{ dailyContent.verseSource }}</p>
+                </div>
+                <!-- The dynamic field which is rendered according to response of friday pray time setted or not -->
+                <div class="bottom-friday-pray box">
+                    <ng-container *ngIf="isFridayPrayTimeSelected === false; else fridayPrayTemplate">
+                        <h3>Cuma namazı saatini girin</h3>
+                        <div class="confirm-friday-pray-time">
+                            <input type="time" [(ngModel)]="timeValue">
+                            <button (click)="toggleFridayPrayTime()">
+                                <i class="fa-solid fa-circle-check fa-2xl"></i>
+                            </button>
+                        </div>
+                    </ng-container>
+                    <ng-template #fridayPrayTemplate>
+                        <div class="displayed-friday-pray-time">
+                            <div class="displayed-friday-pray-time-left">
+                                <h4>Cuma namazı saati<br>Gebetszeit am Freitag<br><span lang="ar">وقت صلاة الجمعة</span>
+                                </h4>
+                            </div>
+                            <div class="displayed-friday-pray-time-right">
+                                {{ timeValue }}
+                                <button (click)="toggleFridayPrayTime()">Saati Değiştir</button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </ng-container>
+        <!-- This part of the template is rendered if there is no data of prayer time -->
+        <ng-template #elseTemplate>
+            <div class="daily-content">
+                <div class="verse daily-content-child">
+                    <p>{{ dailyContent.verse }}</p>
+                    <p class="daily-content-p">{{ dailyContent.verseSource }}</p>
+                </div>
+                <div class="hadith daily-content-child">
+                    <p>{{ dailyContent.hadith }}</p>
+                    <p class="daily-content-p">{{ dailyContent.hadithSource }}</p>
+                </div>
+                <div class="pray daily-content-child">
+                    <p>{{ dailyContent.pray }}</p>
+                    <p class="daily-content-p">{{ dailyContent.praySource }}</p>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

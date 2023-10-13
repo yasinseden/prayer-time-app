@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Handjet:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* --primary-color: #33658a; */
+  /* --primary-color: #78A1BB; */
+  --primary-color: #7796cb;
+  /* --secondary-color: #8fc93a; */
+  --secondary-color: #498467;
+  --token-color: #F5B82E;
+  --warning-color: #881600;
+  --latin-font: "Chakra Petch", sans-serif;
+  --arabic-font: "Handjet", cursive;
+  --xxlarge-font: 2em;
+  --xlarge-font: 1.75em;
+  --large-font: 1.25em;
+  --medium-font: 0.85em;
+  --small-font: 0.65em;
+}
+
+:lang(ar) {
+  font-family: var(--arabic-font);
+}
+
+:lang(lt) {
+  font-family: var(--latin-font);
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  border-radius: 1em;;
+  background-color: var(--primary-color);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.25vw;
+  padding-right: 0.25vw;
+
+  & p {
+    width: 100%;
+  }
+
+  & h3 {
+    width: 100%;
+  }
+}
+
+.box-highlighted-token {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+  border-radius: 1em;;
+  background-color: var(--token-color);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.25vw;
+  padding-right: 0.25vw;
+
+  & p {
+    width: 100%;
+  }
+
+  & h3 {
+    width: 100%;
+  }
+}
+
+.container {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+

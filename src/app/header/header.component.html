@@ -1,0 +1,54 @@
+<!-- Location warning element appears when location data cannot found -->
+<div class="location-warning-snack-bar" [style.transform]="transformWarning">
+    Konum Bilgisine Ulaşılamadı | Standortinformationen konnten nicht erreicht werden | <span lang="ar">تعذر الوصول
+        إلى معلومات الموقع</span>
+</div>
+<div class="head-bar">
+    <div class="title">
+        <h2>Namaz Vakitleri | Gebetszeit | <span lang="ar">موعد الصلاة</span></h2>
+    </div>
+    <!-- This field is for select location. It occurs from 2 main part. Explanation part and a field for find or select location and show selected location -->
+    <div class="location-selector">
+        <div class="explanation">
+            <h3>Lütfen Konum Seçin | Bitte wählen Sie den Standort aus | <span lang="ar">الرجاء تحديد الموقع</span></h3>
+        </div>
+        <div class="location-select-container">
+            <!-- this button below is used to locate and filter the location into data from API -->
+            <div class="location-icon">
+                <button (click)="location()">
+                    <i class="fa-solid fa-location-crosshairs fa-2xl" style="color: white;"></i>
+                </button>
+            </div>
+            <!-- these select inputs below are used to select country, state and city respectively -->
+            <div class="select-inputs">
+                <select [(ngModel)]="selectedValue.country" name="countries" id="countries"
+                    (change)="setStatesToSelectOptions($event)">
+                    <option [value]="'defaultOption'" [selected]="selectedValue.country === 'defaultOption'" disabled
+                        hidden>Select Country/Ülke Seçin</option>
+                    <option *ngFor="let country of allCountries" value="{{ country.id }}">{{ country.code }}/{{
+                        country.name }}</option>
+                </select>
+                <select [(ngModel)]="selectedValue.state" name="states" id="states"
+                    (change)="setCitiesToSelectOptions($event)">
+                    <option [value]="'defaultOption'" [selected]="selectedValue.state === 'defaultOption'" disabled
+                        hidden>Select State/Eyalet Seçin</option>
+                    <option *ngFor="let state of statesOfSelectedCountry" value="{{ state.id }}">{{ state.code }}
+                    </option>
+                </select>
+                <select [(ngModel)]="selectedValue.city" name="cities" id="cities"
+                    (change)="displaySelectedLocationIntoConfirmationField($event)">
+                    <option [value]="'defaultOption'" [selected]="selectedValue.city === 'defaultOption'" disabled
+                        hidden>Select City/Şehir Seçin</option>
+                    <option *ngFor="let city of citiesOfSelectedState" value="{{ city.id }}">{{ city.code }}</option>
+                </select>
+                <!-- The below field is to show and confirm the selected location -->
+                <div class="confirm-location">
+                    <input [value]="bindedLocationInfo" type="text" disabled>
+                    <button (click)="setPrayerInfo()">
+                        <i class="fa-solid fa-circle-check fa-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
