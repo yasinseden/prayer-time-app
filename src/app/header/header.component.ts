@@ -4,6 +4,7 @@ import { PrayerInfo } from '../interfaces/prayer-time-model';
 import { ComponentCommunicationService } from '../services/component-communication.service';
 import { LocationService } from '../services/location.service';
 import { LocationInfo } from '../interfaces/location-info-model';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ import { LocationInfo } from '../interfaces/location-info-model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
+  
   public allCountries: any[] = [];
   public statesOfSelectedCountry: any[] = [];
   public citiesOfSelectedState: any[] = [];
@@ -21,18 +22,34 @@ export class HeaderComponent {
   public selectedValue: LocationInfo = new LocationInfo('defaultOption', 'defaultOption', 'defaultOption');
   private cityId: number = 0;
   public dataToRender: PrayerInfo | undefined = new PrayerInfo(this.selectedLocationInfo, this.prayerInfoOfSelectedCity[0])
-
+  
   constructor(
     private _dataControl: DataControlService,
     private _componentCommunication: ComponentCommunicationService,
     private _locationService: LocationService
-  ) {
-
-    this.allCountries = _dataControl.allCountries;
-    this.sortAlphabetically(this.allCountries);
-  }
-
-
+    ) {
+      
+      this.allCountries = _dataControl.allCountries;
+      this.sortAlphabetically(this.allCountries);
+    }
+    
+    ngOnInit(): void {
+      
+      // The code below tracks the time and when the current time equal to 00:00 it readjust the parayer time info of selected city
+      const readjustTime = new Date();
+      readjustTime.setHours(0, 0, 0, 0);
+      const readjustTimeHourMin = readjustTime.toTimeString().slice(0, 5);
+    
+      interval(60000).subscribe(() => {
+        const currentTime = new Date();
+        const currentTimeHourMin = currentTime.toTimeString().slice(0, 5);
+    
+        if (currentTimeHourMin === readjustTimeHourMin) {
+          this.setPrayerInfo();
+        }
+      })
+    }
+    
   async setStatesToSelectOptions(event: any): Promise<void> {
     const target = event.target;
     this.gatherSelectedLocation(target, 'country');
@@ -84,8 +101,29 @@ export class HeaderComponent {
       }
       this._componentCommunication.dataToRenderBehaviralObject.next(this.dataToRender);
     }
-    this.bindedLocationInfo = 'Selected Location/Seçili Konum'
   }
+
+
+  // ngOnInit(): void {
+  //   const readjustTime = new Date();
+  //   readjustTime.setHours(20, 0, 0, 0);
+
+  //   interval(25000).subscribe(async () => {
+  //     const currentTime = new Date();
+  //     const readjustHour = readjustTime.getDate();
+  //     const currentHour = currentTime.getDate();
+
+  //     if (readjustHour === currentHour) {
+  //       await this._dataControl.getPrayerInfo(1029);
+  //       this.prayerInfoOfSelectedCity = this._dataControl.prayerInfo;
+  //       if (this.dataToRender) {
+  //         this.dataToRender.locationInfo.city = 'jabfkjbdkjng'
+  //         this.dataToRender.infoFromApi = this.prayerInfoOfSelectedCity[0];
+  //       }
+  //       this._componentCommunication.dataToRenderBehaviralObject.next(this.dataToRender)
+  //     }
+  //   })
+  // }
 
   // To gather selected location information
   private gatherSelectedLocation(target: any, field: string): void {

@@ -17,7 +17,7 @@
   }
 }
 
-@media (min-width: 1024px) and (max-width: 1919px){
+@media (max-width: 1919px){
   .app-container {
     font-size: var(--large-font);
   }

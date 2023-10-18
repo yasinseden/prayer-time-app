@@ -47,7 +47,7 @@ export class BodyComponent {
 
       this.prayerTimePeriodKey = this.findTimePeriod()
 
-      if (this.currentDateTime.getHours() >= 18) {
+      if (this.currentDateTime.getHours() >= 18 && this.currentDateTime.getHours() <= 23 || this.currentDateTime.getHours() < 7) {
         this.mosqueDay = 'none';
         this.mosqueNight = 'block';
       } else {

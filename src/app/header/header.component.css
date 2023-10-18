@@ -1,4 +1,3 @@
-@media (min-width: 1024px) {
   .location-warning-snack-bar {
     width: 45%;
     background-color: var(--warning-color);
@@ -133,4 +132,3 @@
   .screen-covering {
     display: none;
   }
-}
